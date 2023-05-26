@@ -12,6 +12,7 @@ public class Globals {
     // Mario's IP Address: 10.207.98.44
 
     public static final int GAME_TIE = 0; 
+    public static final int NO_PLAYER = 0; 
     public static final int PLAYER_ONE = 1; 
     public static final int PLAYER_TWO = 2; 
     public static final int GAME_STILL_ON = -1; 
