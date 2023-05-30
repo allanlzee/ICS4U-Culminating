@@ -11,10 +11,24 @@ public class ClientTicTacToe extends JFrame {
 	mainWindow.setResizable(false); 
 	
 	JPanel tttPanel = new JPanel(); 
+	tttPanel.setLayout(new GridLayout(Globals.ROWS, Globals.COLS));
 	Color c = new Color(176, 224, 230); 
-	GridPanel grid = new GridPanel(c, 0, 0, Globals.NO_PLAYER);
+
+	for (int row = 0; row < Globals.ROWS; row++) {
+		for (int col = 0; col < Globals.COLS; col++) {
+			Globals.grid[row][col] = new GridPanel(c, row, col, Globals.NO_PLAYER);
+			tttPanel.add(Globals.grid[row][col]); 
+		}
+	}
 	
-	tttPanel.add(grid); 
+	GridBagLayout gridBag = new GridBagLayout(); 
+	mainWindow.getContentPane().setLayout(gridBag); 
+
+	Globals.gridBagConstraints.gridx = 0; 
+	Globals.gridBagConstraints.gridy = Globals.ROWS; 
+	Globals.gridBagConstraints.anchor = GridBagConstraints.LINE_START; 
+	mainWindow.getContentPane().add(Globals.status, Globals.gridBagConstraints);
+
 	mainWindow.getContentPane().add(tttPanel); 
 	mainWindow.pack();
 	mainWindow.setVisible(true);  

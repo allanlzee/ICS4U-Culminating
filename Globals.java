@@ -1,3 +1,7 @@
+import java.awt.GridBagConstraints;
+
+import javax.swing.JLabel;
+
 public class Globals
 {
     // Network Constants
@@ -29,4 +33,8 @@ public class Globals
     public static final int COL_WIDTH = 175;
     public static final int ROWS = 3;
     public static final int COLS = 3;
+
+    public static GridPanel[][] grid = new GridPanel[3][3];
+    public static GridBagConstraints gridBagConstraints = new GridBagConstraints(); 
+    public static JLabel status = new JLabel("Game Status: "); 
 }
