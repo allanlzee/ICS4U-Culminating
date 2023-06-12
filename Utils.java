@@ -30,7 +30,9 @@ public class Utils
 
 		int errorCode = NetIO.sendRequest(Globals.REQUEST_TO_PLAY_GAME + 
 			"00" + 
-			leftPad(NetIO.myUserName(), Globals.CLIENT_ID_LENGTH, '0'), 
+			leftPad(NetIO.myUserName(), Globals.CLIENT_ID_LENGTH, '0') +
+			leftPad(NetIO.myIPAddress(), Globals.MAX_IPADDRESS_LENGTH, '0') + 
+			Globals.NO_MESSAGE, 
 			Globals.serverIPAddress);
 
 		if (errorCode != Globals.NET_OK) {

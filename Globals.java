@@ -6,6 +6,7 @@ public class Globals
 {
     // Network Constants
     public static final int CLIENT_ID_LENGTH = 15; 
+    public static final int MAX_IPADDRESS_LENGTH = 15; 
     public static final int NET_SEND_ERROR = -1;
     public static final int NET_RECEIVE_ERROR = -1;
     public static final int NET_OK = 0;
@@ -16,6 +17,7 @@ public class Globals
 
     public static String clientIPAddress = "";
     public static String serverIPAddress; 
+    
 
     // Mario's IP Address: 10.207.98.44
 
@@ -65,4 +67,6 @@ public class Globals
 
     // command + row    + column + identification
     // 1 char  + 1 char + 1 char + 15 characters
+
+    public static final String NO_MESSAGE = "No message";
 }
