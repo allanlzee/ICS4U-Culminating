@@ -38,6 +38,42 @@ public class ClientTicTacToe extends JFrame {
 		
 		mainWindow.pack();
 		mainWindow.setVisible(true);  
+
+		do {
+			System.out.println("Waiting...");
+			String request = NetIO.receiveRequest(); 
+
+			NodeInfo commandFromServer = new NodeInfo(request); 
+			System.out.println(commandFromServer);
+
+			switch (commandFromServer.getCommand()) {
+				case Globals.COMMAND_TO_WAIT: 
+					Utils.updateStatusLine(commandFromServer.getMessage()); 
+					break; 
+
+				case Globals.COMMAND_TO_START_GAME: 
+					Globals.iAmPlayer = (int) commandFromServer.getRowColPlayer().charAt(0); 
+					Globals.currentPlayer = Globals.PLAYER_ONE; 
+					Utils.updateStatusLine(commandFromServer.getMessage()); 
+					break; 
+
+				case Globals.COMMAND_YOUR_TURN: 
+					break; 
+
+				case Globals.COMMAND_GAME_OVER:
+					break; 
+
+				case Globals.COMMAND_GAME_TERMINATE: 
+					break; 
+
+				case Globals.COMMAND_DISPLAY_MESSAGE: 
+					break; 
+
+				default: 
+					Utils.updateStatusLine("ClientTicTacToe: Unknown Server Command");
+					break; 
+			}
+		} while (!Globals.gameOver); 
 	}
 	else {
 		System.out.println("No server selected");

@@ -57,6 +57,10 @@ public class Utils
 		return result + text; 
 	}
 
+	public static void updateStatusLine(String message) {
+		Globals.status.setText(" Game Status: " + message); 
+	}
+
     public static void main (String[] args)
     {
 	System.out.println (initialNetworkConnection ());
