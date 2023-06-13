@@ -45,7 +45,7 @@ public class Globals
 
     public static final int OFFSET = 15; 
     
-    public static final String SERVER1_NAME = "Bob's Bar";
+    public static final String SERVER1_NAME = "Mario's Server";
     public static final String SERVER2_NAME = "Daniel's Dungeon"; 
     public static final String SERVER3_NAME = "Prasun and Sons"; 
     public static final String SERVER4_NAME = "Tilted Towers"; 
