@@ -48,7 +48,7 @@ public class Utils
 	return Globals.serverIPAddress;
     }
 
-	private static String leftPad(String text, int desiredLen, char paddingItem) {
+	public static String leftPad(String text, int desiredLen, char paddingItem) {
 		String result = ""; 
 		for (int i = 0; i < desiredLen - text.length(); i++) {
 			result = paddingItem + result;
@@ -59,6 +59,14 @@ public class Utils
 
 	public static void updateStatusLine(String message) {
 		Globals.status.setText(" Game Status: " + message); 
+	}
+
+	public static void delay(int ms) {
+		try {
+			Thread.sleep(ms); 
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		}
 	}
 
     public static void main (String[] args)

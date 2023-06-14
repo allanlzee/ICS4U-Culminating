@@ -10,6 +10,7 @@ public class ClientTicTacToe extends JFrame {
 	
 		mainWindow.setTitle("Allan Zhou");
 		mainWindow.setLocation(Globals.FRAME_X, Globals.FRAME_Y);
+		mainWindow.addWindowListener(new WindowEventHandler()); 
 		mainWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); 
 		mainWindow.setResizable(false); 
 		
@@ -64,6 +65,7 @@ public class ClientTicTacToe extends JFrame {
 					break; 
 
 				case Globals.COMMAND_GAME_TERMINATE: 
+					Utils.updateStatusLine(commandFromServer.getMessage()); 
 					break; 
 
 				case Globals.COMMAND_DISPLAY_MESSAGE: 
