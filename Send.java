@@ -13,7 +13,7 @@ public class Send
 	    System.out.print ("Destination IP-Address: ");
 	    String ipAddress = Stdin.readLine ();
 
-	    NetIO.sendRequest (message, ipAddress);
+	    NetIO.sendRequest ("" + message, ipAddress);
 	}
 	while (true);
     }

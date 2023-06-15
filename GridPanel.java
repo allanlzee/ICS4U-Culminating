@@ -47,7 +47,7 @@ public class GridPanel extends JPanel
 	if (val == Globals.PLAYER_ONE)
 	{
 	    // Draw an X
-	    g.setColor (Color.red);
+	    g.setColor (Color.blue);
 	    g.drawLine (Globals.OFFSET, Globals.OFFSET,
 		    Globals.COL_WIDTH - Globals.OFFSET,
 		    Globals.ROW_HEIGHT - Globals.OFFSET);
@@ -74,12 +74,27 @@ public class GridPanel extends JPanel
 
 	public void mousePressed (MouseEvent e)
 	{
-	    System.out.println ("Mouse pressed in panel: " + row + " " + col);
+		if ((!Globals.gameOver && Globals.currentPlayer != Globals.NO_PLAYER) && 
+			(Globals.currentPlayer == Globals.iAmPlayer && val == Globals.NO_PLAYER)) {
+				int errorCode = NetIO.sendRequest("" + Globals.REQUEST_TO_PROCESS_PLAY + 
+					Integer.toString(row) + Integer.toString(col) + 
+					Utils.leftPad(NetIO.myUserName(), Globals.CLIENT_ID_LENGTH, '0') +
+					Utils.leftPad(NetIO.myIPAddress(), Globals.MAX_IPADDRESS_LENGTH, '0') +
+					Globals.NO_MESSAGE, 
+					Globals.serverIPAddress);
 
-	    val = 1;
+				if (errorCode == Globals.NET_OK) {
+					val = Globals.currentPlayer; 
+					Globals.currentPlayer = Utils.otherPlayer(Globals.currentPlayer); 
 
-	    Graphics g = getGraphics ();
-	    drawXorO (g);
+					Graphics g = getGraphics ();
+	    			drawXorO (g);
+					Utils.updateStatusLine("It's your opponent's turn now...");
+				} 
+				else {
+					Utils.updateStatusLine("Play not processed. Connection may have been lost.");
+				}
+			}
 	}
     }
 }

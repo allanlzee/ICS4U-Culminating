@@ -53,19 +53,32 @@ public class ClientTicTacToe extends JFrame {
 					break; 
 
 				case Globals.COMMAND_TO_START_GAME: 
-					Globals.iAmPlayer = (int) commandFromServer.getRowColPlayer().charAt(0); 
+					Globals.iAmPlayer = commandFromServer.getRowColPlayer().charAt(0) - 48; 
 					Globals.currentPlayer = Globals.PLAYER_ONE; 
 					Utils.updateStatusLine(commandFromServer.getMessage()); 
 					break; 
 
 				case Globals.COMMAND_YOUR_TURN: 
+					int row = commandFromServer.getRowColPlayer().charAt(0) - 48; 
+					int col = commandFromServer.getRowColPlayer().charAt(1) - 48; 
+
+					Globals.grid[row][col].setVal(Globals.currentPlayer); 
+
+					Graphics2D g = (Graphics2D) Globals.grid[row][col].getGraphics(); 
+					Globals.grid[row][col].drawXorO(g);
+					
+					Globals.currentPlayer = Utils.otherPlayer(Globals.currentPlayer); 
+					Utils.updateStatusLine(commandFromServer.getMessage()); 
 					break; 
 
 				case Globals.COMMAND_GAME_OVER:
-					break; 
+					Utils.updateStatusLine(commandFromServer.getMessage()); 
+					Globals.gameOver = true; 
+					break;  
 
 				case Globals.COMMAND_GAME_TERMINATE: 
 					Utils.updateStatusLine(commandFromServer.getMessage()); 
+					Globals.gameOver = true; 
 					break; 
 
 				case Globals.COMMAND_DISPLAY_MESSAGE: 

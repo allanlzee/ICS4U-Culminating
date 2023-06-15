@@ -28,7 +28,7 @@ public class Utils
 	    for (; !serverName.equals(serversNames[i]); i++);
 	    Globals.serverIPAddress = serversAddresses[i];
 
-		int errorCode = NetIO.sendRequest(Globals.REQUEST_TO_PLAY_GAME + 
+		int errorCode = NetIO.sendRequest("" + Globals.REQUEST_TO_PLAY_GAME + 
 			"00" + 
 			leftPad(NetIO.myUserName(), Globals.CLIENT_ID_LENGTH, '0') +
 			leftPad(NetIO.myIPAddress(), Globals.MAX_IPADDRESS_LENGTH, '0') + 
@@ -66,6 +66,18 @@ public class Utils
 			Thread.sleep(ms); 
 		} catch (InterruptedException e) {
 			Thread.currentThread().interrupt();
+		}
+	}
+
+	public static int otherPlayer(int op) {
+		if (op == Globals.PLAYER_ONE) {
+			return Globals.PLAYER_TWO;
+		} 
+		else if (op == Globals.PLAYER_TWO) {
+			return Globals.PLAYER_ONE; 
+		} 
+		else {
+			return Globals.NO_PLAYER; 
 		}
 	}
 
